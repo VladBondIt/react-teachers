@@ -6,6 +6,9 @@ class Store {
     districts = null
     filterItemId = null
     teachers = null
+    teachersIds = []
+    disableCardsButton = false
+    loading = false
 
     constructor() {
         makeAutoObservable(this)
@@ -37,8 +40,14 @@ class Store {
     setTeachersIds(arr) {
         this.teachersIds = arr
     }
-    setTeachers = (arr) => {
+    setTeachers(arr) {
         this.teachers = arr
+    }
+    setCardsButtonDisable(boolean) {
+        this.disableCardsButton = boolean
+    }
+    setLoading(boolean) {
+        this.loading = boolean
     }
 }
 

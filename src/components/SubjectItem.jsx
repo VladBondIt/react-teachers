@@ -7,7 +7,6 @@ function SubjectItem({ id, name }) {
         store.setSubjectItem({ id, name })
     }
 
-
     return (
         <li onClick={handlerItem} className="select__item">
             {name}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 
 function CardsItem({ firstName, patrName, photoPathSquare, photoPath, photoPathLarge,
     minPricePerHour, teachingSubjects, hasLargePhoto, hasPhoto, hasSquarePhoto }) {
@@ -6,7 +6,7 @@ function CardsItem({ firstName, patrName, photoPathSquare, photoPath, photoPathL
     const [imgLink, setImgLink] = useState('')
 
 
-    const handlerImg = () => {
+    const handlerImg = useCallback(() => {
 
         switch (true) {
             case hasSquarePhoto:
@@ -23,11 +23,11 @@ function CardsItem({ firstName, patrName, photoPathSquare, photoPath, photoPathL
                 setImgLink(photoPathSquare)
                 break;
         }
-    }
+    }, [hasSquarePhoto, hasPhoto, photoPath, hasLargePhoto, photoPathLarge, photoPathSquare])
 
     useEffect(() => {
         handlerImg()
-    }, [])
+    }, [handlerImg])
 
 
     return (

@@ -6,9 +6,8 @@ import AreasItem from './AreasItem';
 import store from '../store/store';
 import DistrictsItem from './DistrictsItem';
 
-const FilterItem = observer(({ id, title }) => {
+const FilterItem = observer(({ id, title, update }) => {
 
-    let visibleSelects = null;
 
     const handlerFilterItem = () => {
         if (store.filterItemId && store.filterItemId === id) {
@@ -20,6 +19,13 @@ const FilterItem = observer(({ id, title }) => {
             store.setFilterItemId(null)
         }
     }
+
+    let visibleSelects = null;
+
+    // const handlerSelect=()=>{
+    // }
+
+    console.log(store.subjectItem, store.areaItem, store.districtItem);
 
     switch (id) {
         case 1:
@@ -40,21 +46,19 @@ const FilterItem = observer(({ id, title }) => {
     }
 
     return (
-        <>
-            <li className="filter__item">
-                <div onClick={handlerFilterItem} className="filter__box">
-                    {title}
-                    <Arrow className="filter__svg" />
-                </div>
-                {
-                    store.filterItemId === id
-                        ? <ul className="filter__select select">
-                            {visibleSelects && visibleSelects}
-                        </ul>
-                        : null
-                }
-            </li>
-        </>
+        <button
+            disabled={id === 3 && !store.districts ? true : false}
+            className="filter__item">
+            <div onClick={handlerFilterItem} className="filter__box">
+                {title}
+                <Arrow className="filter__svg" />
+            </div>
+            {store.filterItemId === id
+                ? <ul className="filter__select select">
+                    {visibleSelects && visibleSelects}
+                </ul>
+                : null}
+        </button>
     )
 })
 

@@ -1,6 +1,6 @@
 import store from '../store/store';
 import CardsBody from './CardsBody';
-import Filter from './FIiter';
+import Filter from './Filter';
 
 function App() {
 

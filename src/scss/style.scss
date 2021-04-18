@@ -3,9 +3,15 @@
 $green: #009990;
 $white: white;
 $gray: gray;
+$lightgray: lightgray;
+
+@import "./scroll.scss";
 
 .wrapper {
     padding-top: 50px;
+    :disabled {
+        opacity: 0.2;
+    }
 }
 
 .container {
@@ -15,33 +21,34 @@ $gray: gray;
 }
 
 .filter {
-    color: $green;
     display: flex;
     justify-content: space-between;
-    font-size: 16px;
-    white-space: nowrap;
     @media (max-width: 1024px) {
         flex-direction: column;
         align-items: center;
     }
     &__item {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
         border: 2px solid $green;
         border-radius: 5px;
         height: 45px;
-        position: relative;
         cursor: pointer;
         z-index: 2;
         margin: 0 2px;
         flex: 0 0 25%;
+        font-size: 16px;
+        color: $green;
+        background: $white;
         @media (max-width: 1024px) {
             max-width: 80%;
             width: 100%;
             margin-bottom: 20px;
         }
     }
+
+    &__buttons {
+        display: flex;
+    }
+
     &__button {
         display: flex;
         align-items: center;
@@ -50,12 +57,13 @@ $gray: gray;
         border-radius: 5px;
         padding: 14px 12px;
         line-height: 19px;
+        font-size: 16px;
         color: $white;
+        &:first-child {
+            margin-right: 10px;
+        }
         &:active {
             transform: translate(1px, 1px);
-        }
-        &:disabled {
-            opacity: 0.2;
         }
     }
     &__box {
@@ -63,8 +71,8 @@ $gray: gray;
         justify-content: space-between;
         align-items: center;
         z-index: 5;
+        padding: 12px;
         width: 100%;
-        padding: 14px;
     }
 }
 
@@ -93,20 +101,27 @@ $gray: gray;
         color: $green;
         border-radius: 5px;
         padding: 14px 20px;
+        &:active {
+            transform: translate(1px, 1px);
+        }
     }
 }
 
 .select {
-    position: absolute;
-    left: -2px;
-    top: 39px;
-    width: 101.6%;
+    width: 100%;
     border: 2px solid $green;
     border-radius: 0 0 5px 5px;
-    max-height: 180px;
+    max-height: 190px;
     overflow: auto;
     background: $white;
     border-top-width: 0;
+    // for firefox
+    scrollbar-color: $green $lightgray;
+    scrollbar-width: thin;
+    @media (max-width: 1024px) {
+        border-radius: 0;
+        border: 0 solid #000;
+    }
     &__item {
         font-size: 16px;
         padding: 14px;
@@ -168,4 +183,19 @@ $gray: gray;
         line-height: 23px;
         color: $green;
     }
+}
+
+.loader {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    color: #ffffff;
+    font-size: 30px;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

@@ -1,0 +1,16 @@
+::-webkit-scrollbar {
+    @media (max-width: 922px) {
+        width: 10px;
+    }
+    width: 8px;
+    background: $white;
+}
+
+::-webkit-scrollbar-track {
+    border: 2px solid $gray;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: $green;
+    border-radius: 15px;
+}

@@ -28,12 +28,16 @@ class HttpService {
         return await this.getResources(`search/teacherIds?${areaIdQuery}${districtIdQuery}${subjectIdQuery}`);
     }
 
-    async getTeachers(some) {
+    async getTeachers(arrIds, limit = 10) {
 
-        const temp = some.map((value, i) => {
-            return `&Ids[${i}]=${value}`
+        const temp = arrIds.reduce((acc, curr, i) => {
 
-        }).join('')
+            if (acc.length < limit) {
+                acc.push(`&Ids[${i}]=${curr}`)
+            }
+            return acc;
+        }, []).join('')
+
 
         return await this.getResources(`/teachers/short?${temp}`);
     }
